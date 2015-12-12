@@ -9,9 +9,9 @@ public class Day11 {
 	private static boolean passwordOK = false;
 	
 	public static void main(String[] args) {
-		currentGeneratedPassword = "aabbrxyz".toCharArray();
-		System.out.println(checkPassword(true));
-		//findNextPassword("hepxcrrq");
+		//currentGeneratedPassword = "aabbrxyz".toCharArray();
+		//System.out.println(checkPassword(true));
+		findNextPassword("hepxcrrq");
 	}
 	
 	
@@ -76,12 +76,14 @@ public class Day11 {
 		char[] workingChars = password.toCharArray();
 		//check two pairs in a row
 		int increasingCpt = 0;
+		char firstpair = ' ';
 		for(int i = 0; i < workingChars.length; i++){
 			if (i+1 >= workingChars.length) continue; //end of string
 			char a = workingChars[i];
 			char b = workingChars[i+1];
 			if (a == ' ' || b == ' ') continue;
-			if (a == b){
+			if (a == b && (a != firstpair)){
+				firstpair = a;
 				if (debug){
 					System.out.println("Found pair ["+a+","+b+"] in pos ["+i+","+(i+1)+"]");
 				}
@@ -89,6 +91,7 @@ public class Day11 {
 				workingChars[i]=' ';
 				workingChars[i+1]=' ';
 				i++;
+				if (increasingCpt == 2) break;
 			}
 		}
 		boolean increasing = false;
