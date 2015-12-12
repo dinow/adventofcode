@@ -81,15 +81,15 @@ public class Day11 {
 			if (i+1 >= workingChars.length) continue; //end of string
 			char a = workingChars[i];
 			char b = workingChars[i+1];
-			if (a == ' ' || b == ' ') continue;
+			//if (a == ' ' || b == ' ') continue;
 			if (a == b && (a != firstpair)){
 				firstpair = a;
 				if (debug){
 					System.out.println("Found pair ["+a+","+b+"] in pos ["+i+","+(i+1)+"]");
 				}
 				increasingCpt++;
-				workingChars[i]=' ';
-				workingChars[i+1]=' ';
+				//workingChars[i]=' ';
+				//workingChars[i+1]=' ';
 				i++;
 				if (increasingCpt == 2) break;
 			}
@@ -101,7 +101,7 @@ public class Day11 {
 			char a = workingChars[i];
 			char b = workingChars[i+1];
 			char c = workingChars[i+2];
-			if (a == ' ' || b == ' ' || c == ' ') continue;
+			//if (a == ' ' || b == ' ' || c == ' ') continue;
 			if (a == b-1 && a == c-2){
 				if (debug){
 					System.out.println("Found increasing ["+a+","+b+","+c+"] in pos ["+i+","+(i+1)+","+(i+2)+"]");
