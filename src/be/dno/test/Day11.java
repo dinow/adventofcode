@@ -9,9 +9,9 @@ public class Day11 {
 	private static boolean passwordOK = false;
 	
 	public static void main(String[] args) {
-		//currentGeneratedPassword = "abcdeggg".toCharArray();
-		//System.out.println(checkPassword());
-		findNextPassword("hepxcrrq");
+		currentGeneratedPassword = "aabbrxyz".toCharArray();
+		System.out.println(checkPassword(true));
+		//findNextPassword("hepxcrrq");
 	}
 	
 	
@@ -32,6 +32,8 @@ public class Day11 {
 	
 	public static void increment(){
 		currentGeneratedPassword[currentlyAddingCell]++;
+		char a = currentGeneratedPassword[currentlyAddingCell];
+		if (a == 'i' || a == 'o' || a == 'l') currentGeneratedPassword[currentlyAddingCell]++;
 		if (currentGeneratedPassword[currentlyAddingCell] > 'z'){
 			currentGeneratedPassword[currentlyAddingCell] = 'a';
 			nextStep();
@@ -45,6 +47,8 @@ public class Day11 {
 		boolean ok = false;
 		while (!ok){
 			currentGeneratedPassword[lastupdatedprefix]++;
+			char a = currentGeneratedPassword[lastupdatedprefix];
+			if (a == 'i' || a == 'o' || a == 'l') currentGeneratedPassword[lastupdatedprefix]++;
 			if (currentGeneratedPassword[lastupdatedprefix] > 'z'){
 				currentGeneratedPassword[lastupdatedprefix] = 'a';
 				lastupdatedprefix--;
@@ -63,7 +67,9 @@ public class Day11 {
 	 * @return
 	 */
 	public static boolean checkPassword(boolean debug){
+		
 		String password = new String(currentGeneratedPassword);
+		//System.out.println(password);
 		if (password.contains("i") || password.contains("o") || password.contains("l")){
 			return false;
 		}
@@ -71,7 +77,7 @@ public class Day11 {
 		//check two pairs in a row
 		int increasingCpt = 0;
 		for(int i = 0; i < workingChars.length; i++){
-			if (i+1 == workingChars.length) return false; //end of string
+			if (i+1 >= workingChars.length) continue; //end of string
 			char a = workingChars[i];
 			char b = workingChars[i+1];
 			if (a == ' ' || b == ' ') continue;
@@ -88,7 +94,7 @@ public class Day11 {
 		boolean increasing = false;
 		//check for increasing 3
 		for(int i = 0; i < workingChars.length; i++){
-			if (i+2 == workingChars.length) return false; //end of string
+			if (i+2 >= workingChars.length) continue; //end of string
 			char a = workingChars[i];
 			char b = workingChars[i+1];
 			char c = workingChars[i+2];
